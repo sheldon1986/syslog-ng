@@ -6,9 +6,9 @@ RUN apt-get update -qq && apt-get install -y \
     wget \
     vim
 
+ADD syslog-ng.conf /etc/syslog-ng/conf.d/syslog-ng.conf
 
-RUN wget -P /etc/syslog-ng/conf.d/ http://brezular.com/wp-content/uploads/2016/12/firewals.conf_.txt -O firewals.conf && mv firewals.conf /etc/syslog-ng/conf.d/ && echo 'SYSLOGNG_OPTS="--no-caps"' >> /etc/default/syslog-ng 
-RUN useradd ubuntu && mkdir -p /var/log/firewalls
+RUN echo 'SYSLOGNG_OPTS="--no-caps"' >> /etc/default/syslog-ng && useradd ubuntu && mkdir -p /var/log/syslog-ng
 
 EXPOSE 514/udp
 
